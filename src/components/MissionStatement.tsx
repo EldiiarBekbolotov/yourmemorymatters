@@ -18,33 +18,45 @@ const MissionSection: React.FC = () => {
       icon: (
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
           <path
-            d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"
+            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
             fill="#ffd166"
           />
         </svg>
       ),
-
-      title: "Education and training program",
+      title: "Our Mission",
       content:
-        "Our Education and Training Program equips individuals with the knowledge, skills, and opportunities they need to thrive. From literacy classes to vocational training, we invest in human potential at every level.",
+        "Memory Matters exists to make memory visible, human, and understood. We are a student-led platform dedicated to exploring the science, stories, and lived realities of memory-related conditions — such as Alzheimer's and Lewy Body Dementia — through education, conversation, and community. We bridge neuroscience with humanity, translating complex research into accessible insights and amplifying the voices of patients, caregivers, and researchers.",
     },
     {
       id: 1,
       icon: (
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
           <path
-            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+            d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"
             fill="#ffd166"
           />
         </svg>
       ),
-
-      title: "Promoting wellness and security",
+      title: "Our Vision",
       content:
-        "We provide healthcare access, mental health support, and community safety programs to ensure every person can live with dignity, security, and the physical wellbeing they deserve.",
+        "We envision a world where memory-related conditions are met with understanding rather than stigma, and where science and storytelling work together to create change. Memory Matters strives to build a global ecosystem — across schools, communities, and cultures — that values cognitive health, preserves stories, and empowers the next generation to lead with curiosity, compassion, and purpose.",
     },
     {
       id: 2,
+      icon: (
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"
+            fill="#ffd166"
+          />
+        </svg>
+      ),
+      title: "Our Community",
+      content:
+        "Memory Matters spans multiple platforms. Whether you want to immerse yourself with knowledge through attending meetings or listening to podcasts — we got you! Our Discord is where announcements live. Our Spotify podcast features neurologists discussing causes, risks, prevention, and treatment. Our Instagram turns complex science into creative, easy-to-understand content that educates and inspires.",
+    },
+    {
+      id: 3,
       icon: (
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
           <path
@@ -53,25 +65,9 @@ const MissionSection: React.FC = () => {
           />
         </svg>
       ),
-
-      title: "Responding swiftly to disasters",
+      title: "Our Commitment",
       content:
-        "When crises strike, HopeWorks mobilizes rapidly to deliver emergency relief — food, clean water, shelter, and medical care — to affected populations within 48 hours of a disaster declaration.",
-    },
-    {
-      id: 3,
-      icon: (
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-          <path
-            d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"
-            fill="#ffd166"
-          />
-        </svg>
-      ),
-
-      title: "Building a brighter tomorrow",
-      content:
-        "Through long-term development programs, we work alongside communities to build sustainable infrastructure, foster economic independence, and create the conditions for lasting prosperity.",
+        "At its core, Memory Matters believes that understanding memory is the first step toward protecting it, honoring those affected, and building a future where no one faces cognitive illness alone. Through podcasts, eBooks, digital tools, and global collaborations, Memory Matters creates spaces where science is humanized and stories are preserved.",
     },
   ];
 
@@ -85,7 +81,7 @@ const MissionSection: React.FC = () => {
         <AnimatedSection delay={0}>
           <div
             className="relative rounded-2xl overflow-hidden"
-            style={{ background: "#391d47", padding: "140px 80px" }}
+            style={{ background: "#391d47", padding: "100px 80px" }}
           >
             {/* Background decorations */}
             <div
@@ -110,13 +106,14 @@ const MissionSection: React.FC = () => {
                     className="font-geist font-semibold text-white leading-[1.1em]"
                     style={{ fontSize: "clamp(32px, 4vw, 56px)" }}
                   >
-                    The mission of our organization
+                    Our Goal, Vision & Commitment
                   </h2>
                 </AnimatedSection>
                 <AnimatedSection delay={50}>
                   <p className="font-satoshi font-medium text-white/80 text-xl leading-[1.4em]">
-                    Explore our diverse range of programs and initiatives aimed
-                    at fostering positive change worldwide.
+                    Through heartfelt stories, expert interviews, and science
+                    made simple, we bridge the gap between neuroscience and the
+                    communities it impacts.
                   </p>
                 </AnimatedSection>
               </div>
@@ -132,7 +129,7 @@ const MissionSection: React.FC = () => {
                         style={{
                           background:
                             openItem === item.id
-                              ? "rgba(154,89,153,0.12)"
+                              ? "rgba(154,89,153,0.15)"
                               : "transparent",
                         }}
                         onClick={() =>
@@ -140,9 +137,7 @@ const MissionSection: React.FC = () => {
                         }
                       >
                         <div className="flex items-center gap-4 p-7">
-                          <div className="flex-shrink-0 w-7 h-7">
-                            {item.icon}
-                          </div>
+                          <div className="flex-shrink-0 w-7 h-7">{item.icon}</div>
                           <h3
                             className="flex-1 font-geist font-semibold text-white leading-[1.2em]"
                             style={{ fontSize: "clamp(18px, 1.5vw, 20px)" }}
@@ -177,7 +172,7 @@ const MissionSection: React.FC = () => {
                             maxHeight: openItem === item.id ? "200px" : "0",
                             overflow: "hidden",
                             transition:
-                              "max-height 0.4s cubic-bezier(0.44, 0, 0.56, 1)",
+                              "max-height 0.4s cubic-bezier(0.05, 0.7, 0.1, 1)",
                           }}
                         >
                           <p className="font-satoshi font-medium text-white/80 text-[18px] leading-[1.4em] pb-7">
@@ -188,25 +183,22 @@ const MissionSection: React.FC = () => {
                     </AnimatedSection>
                   ))}
 
-                  <AnimatedSection delay={200}>
+                  <AnimatedSection delay={250}>
                     <a
-                      href="#volunteer"
+                      href="/mission"
                       className="inline-block mt-4 bg-[#9a5999] text-white font-geist font-semibold text-[18px] px-8 py-4 rounded-pill hover:bg-[#9a5999]/80 transition-colors"
                     >
-                      Join our mission
+                      Read our full mission
                     </a>
                   </AnimatedSection>
                 </div>
 
                 {/* Image */}
                 <AnimatedSection delay={100} className="flex-1">
-                  <div
-                    className="rounded-2xl overflow-hidden"
-                    style={{ aspectRatio: "1" }}
-                  >
+                  <div className="rounded-2xl overflow-hidden" style={{ aspectRatio: "1" }}>
                     <img
-                      src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=600&h=600&fit=crop"
-                      alt="Community members gathered together at a HopeWorks Foundation program event"
+                      src="https://static.wixstatic.com/media/b96cfe_529b2c4c93064057930e644ba3c25dd0~mv2.png/v1/fill/w_952,h_556,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/b96cfe_529b2c4c93064057930e644ba3c25dd0~mv2.png"
+                      alt="Memory Matters vision and community"
                       className="w-full h-full object-cover"
                     />
                   </div>

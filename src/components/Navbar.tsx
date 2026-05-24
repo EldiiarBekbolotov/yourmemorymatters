@@ -1,11 +1,7 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
-interface NavbarProps {
-  activeSection?: string;
-}
-
-const Navbar: React.FC<NavbarProps> = ({ activeSection = "home" }) => {
+const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -16,63 +12,62 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection = "home" }) => {
   }, []);
 
   const navLinks = [
-    { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "Causes", href: "#causes" },
-    { label: "Events", href: "#events" },
-    { label: "Contact", href: "#contact" },
+    { label: "Home", href: "/" },
+    { label: "Mission", href: "/mission" },
+    { label: "Team", href: "/team" },
+    { label: "Events", href: "/events" },
+    { label: "Opportunities", href: "/opportunities" },
+    { label: "Join", href: "/join" },
+    { label: "Crews", href: "/crews" },
+    { label: "Start a Chapter", href: "/start-a-chapter" },
   ];
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#391d47]/95 backdrop-blur-md shadow-lg"
+          ? "bg-[#391d47] shadow-[0px_1px_2px_rgba(57,29,71,0.32),_0px_2px_6px_2px_rgba(57,29,71,0.16)]"
           : "bg-transparent"
       }`}
+      style={{ transition: "background-color 300ms cubic-bezier(0.2,0,0,1), box-shadow 300ms cubic-bezier(0.2,0,0,1)" }}
     >
       <div className="max-w-[1460px] mx-auto px-8 py-5 flex items-center justify-between">
         {/* Logo */}
-        <a href="#home" className="flex items-center gap-2 group">
-          <div className="w-9 h-9 rounded-full bg-[#ffd166] flex items-center justify-center">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"
-                fill="#391d47"
-              />
-            </svg>
+        <a href="/" className="flex items-center gap-2 group flex-shrink-0">
+          <div className="w-9 h-9 rounded-full overflow-hidden flex-shrink-0">
+            <img
+              src="/android-chrome-192x192.png"
+              alt="Memory Matters logo"
+              className="w-full h-full object-cover"
+            />
           </div>
           <span className="font-geist font-700 text-white text-xl tracking-tight">
-            HopeWorks
+            Memory Matters
           </span>
         </a>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-10">
+        {/* Desktop Nav — only shows at xl (1280px+) */}
+        <div className="hidden xl:flex items-center gap-5">
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className={`nav-link-underline font-satoshi font-medium text-[18px] text-white transition-colors duration-300 hover:text-[#ffd166] ${
-                activeSection === link.label.toLowerCase()
-                  ? "active text-[#ffd166]"
-                  : ""
-              }`}
+              className="nav-link-underline font-satoshi font-medium text-[15px] text-white transition-colors duration-200 hover:text-[#ffd166]"
             >
               {link.label}
             </a>
           ))}
         </div>
 
-        {/* CTA Button */}
-        <div className="hidden md:flex items-center gap-4">
+        {/* CTA Button — desktop only */}
+        <div className="hidden xl:flex items-center gap-4 flex-shrink-0">
           <a
-            href="#causes"
-            className="btn-hover-slide relative overflow-hidden bg-[#ffd166] text-[#181618] font-geist font-semibold text-[18px] px-8 py-4 rounded-pill transition-all duration-300 hover:bg-[#ffd166]/90 flex items-center gap-3"
+            href="/join"
+            className="btn-hover-slide relative overflow-hidden bg-[#ffd166] text-[#181618] font-geist font-semibold text-[15px] px-6 py-3 rounded-pill flex items-center gap-2"
           >
-            <span className="btn-text-default">Donate now</span>
-            <span className="btn-text-hover">Donate now</span>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <span className="btn-text-default">Get Involved</span>
+            <span className="btn-text-hover">Get Involved</span>
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
               <path
                 d="M3 8h10M9 4l4 4-4 4"
                 stroke="#181618"
@@ -84,48 +79,64 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection = "home" }) => {
           </a>
         </div>
 
-        {/* Mobile Hamburger */}
+        {/* Hamburger — shows below xl */}
         <button
-          className="md:hidden text-white p-2"
+          className="xl:hidden text-white p-2 rounded-full md3-state"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
+          style={{ transition: "background-color 150ms cubic-bezier(0.2,0,0,1)" }}
         >
           <div className="w-6 flex flex-col gap-1.5">
             <span
-              className={`block h-0.5 bg-white transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-2" : ""}`}
+              className={`block h-0.5 bg-white transition-all duration-300 ${
+                mobileOpen ? "rotate-45 translate-y-2" : ""
+              }`}
+              style={{ transition: "transform 300ms cubic-bezier(0.05,0.7,0.1,1)" }}
             />
             <span
-              className={`block h-0.5 bg-white transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`}
+              className={`block h-0.5 bg-white transition-all duration-200 ${
+                mobileOpen ? "opacity-0" : ""
+              }`}
             />
             <span
-              className={`block h-0.5 bg-white transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`}
+              className={`block h-0.5 bg-white transition-all duration-300 ${
+                mobileOpen ? "-rotate-45 -translate-y-2" : ""
+              }`}
+              style={{ transition: "transform 300ms cubic-bezier(0.05,0.7,0.1,1)" }}
             />
           </div>
         </button>
       </div>
 
-      {/* Mobile Menu */}
-      {mobileOpen && (
-        <div className="md:hidden bg-[#391d47] border-t border-white/10 px-8 py-6 flex flex-col gap-4">
+      {/* Mobile Menu — slides in below xl */}
+      <div
+        className="xl:hidden bg-[#391d47] border-t border-white/10 overflow-hidden"
+        style={{
+          maxHeight: mobileOpen ? "600px" : "0",
+          transition: "max-height 400ms cubic-bezier(0.05,0.7,0.1,1)",
+        }}
+      >
+        <div className="px-8 py-6 flex flex-col gap-1">
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
               onClick={() => setMobileOpen(false)}
-              className="font-satoshi font-medium text-white text-lg hover:text-[#ffd166] transition-colors"
+              className="font-satoshi font-medium text-white text-base px-4 py-3 rounded-xl hover:bg-white/10 transition-colors"
+              style={{ transition: "background-color 150ms cubic-bezier(0.2,0,0,1)" }}
             >
               {link.label}
             </a>
           ))}
           <a
-            href="#causes"
+            href="/join"
             onClick={() => setMobileOpen(false)}
-            className="mt-2 bg-[#ffd166] text-[#181618] font-geist font-semibold text-base px-6 py-3 rounded-pill text-center"
+            className="mt-3 bg-[#ffd166] text-[#181618] font-geist font-semibold text-base px-6 py-3 rounded-pill text-center"
           >
-            Donate now
+            Get Involved
           </a>
         </div>
-      )}
+      </div>
     </nav>
   );
 };

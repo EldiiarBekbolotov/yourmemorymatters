@@ -49,6 +49,64 @@
   font-display: swap;
 }
 
+/* ─── MD3 Design Tokens ──────────────────────────────────────────────────── */
+:root {
+  /* Color roles */
+  --md-primary: #391d47;
+  --md-on-primary: #ffffff;
+  --md-primary-container: #f9edff;
+  --md-on-primary-container: #391d47;
+  --md-secondary: #9a5999;
+  --md-on-secondary: #ffffff;
+  --md-secondary-container: #f4dcf3;
+  --md-on-secondary-container: #2e0830;
+  --md-tertiary: #ffd166;
+  --md-on-tertiary: #181618;
+  --md-surface: #fffbff;
+  --md-surface-variant: #f9edff;
+  --md-on-surface: #181618;
+  --md-on-surface-variant: #4a4458;
+  --md-outline: rgba(57, 29, 71, 0.28);
+  --md-outline-variant: rgba(57, 29, 71, 0.14);
+
+  /* Shape scale */
+  --md-shape-xs: 4px;
+  --md-shape-sm: 8px;
+  --md-shape-md: 12px;
+  --md-shape-lg: 16px;
+  --md-shape-xl: 28px;
+  --md-shape-full: 9999px;
+
+  /* Elevation shadows (brand-tinted, MD3 double-layer pattern) */
+  --md-elev-1: 0px 1px 2px rgba(57, 29, 71, 0.32),
+    0px 1px 3px 1px rgba(57, 29, 71, 0.16);
+  --md-elev-2: 0px 1px 2px rgba(57, 29, 71, 0.32),
+    0px 2px 6px 2px rgba(57, 29, 71, 0.16);
+  --md-elev-3: 0px 4px 8px 3px rgba(57, 29, 71, 0.16),
+    0px 1px 3px rgba(57, 29, 71, 0.32);
+  --md-elev-4: 0px 6px 10px 4px rgba(57, 29, 71, 0.16),
+    0px 2px 3px rgba(57, 29, 71, 0.32);
+
+  /* Motion — MD3 easing curves */
+  --md-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --md-ease-emphasized: cubic-bezier(0.05, 0.7, 0.1, 1);
+  --md-ease-decelerate: cubic-bezier(0, 0, 0.2, 1);
+  --md-ease-accelerate: cubic-bezier(0.4, 0, 1, 1);
+
+  /* Duration */
+  --md-dur-short1: 50ms;
+  --md-dur-short2: 100ms;
+  --md-dur-short3: 150ms;
+  --md-dur-short4: 200ms;
+  --md-dur-medium1: 250ms;
+  --md-dur-medium2: 300ms;
+  --md-dur-medium3: 350ms;
+  --md-dur-medium4: 400ms;
+  --md-dur-long1: 450ms;
+  --md-dur-long2: 500ms;
+}
+
+/* ─── Base ───────────────────────────────────────────────────────────────── */
 * {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
@@ -62,19 +120,21 @@ body {
   background-color: #f9edff;
 }
 
+/* ─── Scroll animation (MD3 emphasized decelerate) ───────────────────────── */
 .appear-hidden {
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateY(24px);
 }
 
 .appear-visible {
   opacity: 1;
   transform: translateY(0);
   transition:
-    opacity 0.45s cubic-bezier(0.44, 0, 0.56, 1),
-    transform 0.45s cubic-bezier(0.44, 0, 0.56, 1);
+    opacity var(--md-dur-medium4) var(--md-ease-emphasized),
+    transform var(--md-dur-medium4) var(--md-ease-emphasized);
 }
 
+/* ─── Ticker ─────────────────────────────────────────────────────────────── */
 .ticker-wrapper {
   overflow: hidden;
   width: 100%;
@@ -91,14 +151,11 @@ body {
 }
 
 @keyframes ticker {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
+/* ─── Nav link — MD3 state layer underline ───────────────────────────────── */
 .nav-link-underline {
   position: relative;
 }
@@ -110,8 +167,8 @@ body {
   left: 0;
   width: 0;
   height: 2px;
-  background-color: #ffd166;
-  transition: width 0.3s ease;
+  background-color: var(--md-tertiary);
+  transition: width var(--md-dur-short4) var(--md-ease-standard);
 }
 
 .nav-link-underline:hover::after,
@@ -119,14 +176,56 @@ body {
   width: 100%;
 }
 
+/* ─── MD3 State Layer ────────────────────────────────────────────────────── */
+/* Applied to interactive surfaces; ::before carries the overlay */
+.md3-state {
+  position: relative;
+  isolation: isolate;
+}
+
+.md3-state::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--md-dur-short3) var(--md-ease-standard);
+  z-index: 0;
+}
+
+.md3-state:hover::before  { opacity: 0.08; }
+.md3-state:focus-visible::before { opacity: 0.12; }
+.md3-state:active::before { opacity: 0.12; }
+
+/* ─── Button — MD3 Filled (primary) ─────────────────────────────────────── */
 .btn-hover-slide {
   position: relative;
   overflow: hidden;
+  transition: box-shadow var(--md-dur-short4) var(--md-ease-standard);
+}
+
+.btn-hover-slide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--md-dur-short3) var(--md-ease-standard);
+}
+
+.btn-hover-slide:hover::before { opacity: 0.08; }
+.btn-hover-slide:active::before { opacity: 0.12; }
+
+.btn-hover-slide:hover {
+  box-shadow: var(--md-elev-1);
 }
 
 .btn-hover-slide .btn-text-default {
   display: block;
-  transition: transform 0.3s cubic-bezier(0.44, 0, 0.56, 1);
+  transition: transform var(--md-dur-medium2) var(--md-ease-emphasized);
 }
 
 .btn-hover-slide:hover .btn-text-default {
@@ -139,7 +238,9 @@ body {
   left: 0;
   right: 0;
   text-align: center;
-  transition: bottom 0.3s cubic-bezier(0.44, 0, 0.56, 1);
+  transition: bottom var(--md-dur-medium2) var(--md-ease-emphasized),
+    top var(--md-dur-medium2) var(--md-ease-emphasized),
+    transform var(--md-dur-medium2) var(--md-ease-emphasized);
 }
 
 .btn-hover-slide:hover .btn-text-hover {
@@ -148,27 +249,36 @@ body {
   transform: translateY(-50%);
 }
 
+/* ─── Card hover — MD3 elevation lift ───────────────────────────────────── */
 .card-hover {
   transition:
-    transform 0.3s cubic-bezier(0.44, 0, 0.56, 1),
-    box-shadow 0.3s ease;
+    box-shadow var(--md-dur-medium2) var(--md-ease-standard),
+    transform var(--md-dur-medium2) var(--md-ease-standard);
 }
 
 .card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 60px rgba(57, 29, 71, 0.15);
+  transform: translateY(-2px);
+  box-shadow: var(--md-elev-3);
 }
 
+/* ─── Accordion ──────────────────────────────────────────────────────────── */
 .accordion-content {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s cubic-bezier(0.44, 0, 0.56, 1);
+  transition: max-height var(--md-dur-medium4) var(--md-ease-emphasized);
 }
 
 .accordion-content.open {
   max-height: 200px;
 }
 
+/* ─── MD3 Elevation utility classes ─────────────────────────────────────── */
+.md3-elev-1 { box-shadow: var(--md-elev-1); }
+.md3-elev-2 { box-shadow: var(--md-elev-2); }
+.md3-elev-3 { box-shadow: var(--md-elev-3); }
+.md3-elev-4 { box-shadow: var(--md-elev-4); }
+
+/* ─── Misc ───────────────────────────────────────────────────────────────── */
 .progress-bar-fill {
-  transition: width 1s ease-in-out;
+  transition: width 1s var(--md-ease-decelerate);
 }

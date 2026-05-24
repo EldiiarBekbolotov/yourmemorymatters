@@ -2,123 +2,112 @@
 import React from "react";
 import AnimatedSection from "./AnimatedSection";
 
-interface Event {
-  image: string;
-  alt: string;
-  title: string;
-  date: string;
+interface Platform {
+  icon: string;
+  name: string;
+  description: string;
+  cta: string;
+  href: string;
+  bg: string;
 }
 
 const EventsSection: React.FC = () => {
-  const events: Event[] = [
+  const platforms: Platform[] = [
     {
-      image:
-        "https://img.rocket.new/generatedImages/rocket_gen_img_1203b8edf-1768751345944.png",
-      alt: "Volunteers participating in a community clean-up day event picking up litter in a park",
-      title: "Join our community clean-up day event together",
-      date: "Mar 15, 2026",
+      icon: "💬",
+      name: "Discord",
+      description:
+        "This is where you will be on top of all announcements! Engage with the founders and the rest of the family! Join Discord first and foremost as you will receive all the latest information as they come!",
+      cta: "Join Now!",
+      href: "https://discord.gg/yZEz3Pggzs",
+      bg: "#5865F2",
     },
     {
-      image:
-        "https://img.rocket.new/generatedImages/rocket_gen_img_154092f2c-1770901767277.png",
-      alt: "Participants celebrating nature and environmental awareness at an outdoor conservation event",
-      title: "Celebrate nature and foster environmental consciousness",
-      date: "Mar 22, 2026",
+      icon: "🎧",
+      name: "Podcasts",
+      description:
+        "Listen to our podcasts focused on dementia! We feature neurologists to discuss causes, risks, prevention, treatment protocols, and more. Community members earn rewards for helping us!",
+      cta: "Listen Now!",
+      href: "https://open.spotify.com/show/4GzPefyZS0BVY1XPLKpMm7",
+      bg: "#1DB954",
     },
     {
-      image:
-        "https://img.rocket.new/generatedImages/rocket_gen_img_184c680f7-1767870253658.png",
-      alt: "Runners participating in a charity fun run to raise funds for community initiatives",
-      title: "Annual charity fun run to support community initiatives",
-      date: "Apr 5, 2026",
+      icon: "📸",
+      name: "Instagram",
+      description:
+        "We bring dementia awareness to life through visuals, stories, and the latest discoveries in brain research. We turn complex science into creative, easy-to-understand content that educates and inspires.",
+      cta: "Follow Now!",
+      href: "https://www.instagram.com/memorymatters.official/",
+      bg: "#E1306C",
     },
   ];
 
   return (
     <section
-      id="events"
+      id="community"
       className="bg-[#f9edff] overflow-hidden"
       style={{ padding: "0 0 140px" }}
     >
       <div className="max-w-[1460px] mx-auto px-8">
         {/* Header */}
-        <div className="flex items-center justify-between mb-14">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-14 gap-6">
           <AnimatedSection delay={0}>
-            <h2
-              className="font-geist font-semibold text-[#181618] leading-[1.1em]"
-              style={{ fontSize: "clamp(32px, 4vw, 56px)" }}
-            >
-              Recent events
-            </h2>
+            <div>
+              <div className="inline-flex items-center gap-2 bg-[#9a5999]/10 rounded-full px-4 py-2 w-fit mb-4">
+                <span className="w-2 h-2 rounded-full bg-[#9a5999]" />
+                <span className="font-satoshi font-medium text-[#9a5999] text-sm">Our Community</span>
+              </div>
+              <h2
+                className="font-geist font-semibold text-[#181618] leading-[1.1em]"
+                style={{ fontSize: "clamp(32px, 4vw, 56px)" }}
+              >
+                Join us on every platform
+              </h2>
+            </div>
           </AnimatedSection>
           <AnimatedSection delay={0}>
             <a
-              href="#events"
-              className="hidden md:inline-block bg-[#391d47] text-white font-geist font-semibold text-[18px] px-8 py-4 rounded-pill hover:bg-[#391d47]/80 transition-colors"
+              href="/join"
+              className="hidden md:inline-block bg-[#391d47] text-white font-geist font-semibold text-[18px] px-8 py-4 rounded-pill hover:bg-[#391d47]/80 transition-colors whitespace-nowrap"
             >
-              Explore all events
+              Get Involved
             </a>
           </AnimatedSection>
         </div>
 
-        {/* Events Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {events.map((event, i) => (
+        {/* Platforms Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {platforms.map((platform, i) => (
             <AnimatedSection key={i} delay={i * 50}>
-              <div className="bg-white rounded-2xl overflow-hidden card-hover cursor-pointer group">
-                {/* Image */}
+              <div className="bg-white rounded-2xl overflow-hidden card-hover flex flex-col h-full">
+                {/* Color header */}
                 <div
-                  className="overflow-hidden rounded-xl m-5"
-                  style={{ aspectRatio: "1.54" }}
+                  className="h-24 flex items-center justify-center"
+                  style={{ background: platform.bg }}
                 >
-                  <img
-                    src={event.image}
-                    alt={event.alt}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
+                  <span className="text-5xl">{platform.icon}</span>
                 </div>
 
                 {/* Content */}
-                <div className="px-5 pb-5 flex flex-col gap-8">
+                <div className="flex flex-col gap-4 p-6 flex-1">
                   <h3
-                    className="font-geist font-semibold text-[#181618] leading-[1.2em]"
-                    style={{ fontSize: "clamp(18px, 1.5vw, 20px)" }}
+                    className="font-geist font-semibold text-[#181618]"
+                    style={{ fontSize: "clamp(20px, 1.8vw, 24px)" }}
                   >
-                    {event.title}
+                    {platform.name}
                   </h3>
-
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                      >
-                        <path
-                          d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"
-                          fill="#575757"
-                        />
-                      </svg>
-                      <span className="font-satoshi font-medium text-[#575757] text-[16px]">
-                        {event.date}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2 group-hover:gap-3 transition-all duration-300">
-                      <span className="font-geist font-semibold text-[#181618] text-[18px]">
-                        View event
-                      </span>
-                      <svg width="8" height="14" viewBox="0 0 8 14" fill="none">
-                        <path
-                          d="M1 1l6 6-6 6"
-                          stroke="#181618"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </div>
-                  </div>
+                  <p className="font-satoshi font-medium text-[#575757] text-[16px] leading-[1.5em] flex-1">
+                    {platform.description}
+                  </p>
+                  <a
+                    href={platform.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-auto inline-block text-center font-geist font-semibold text-white text-[17px] px-6 py-3 rounded-pill transition-colors hover:opacity-90"
+                    style={{ background: platform.bg }}
+                  >
+                    {platform.cta}
+                  </a>
                 </div>
               </div>
             </AnimatedSection>
